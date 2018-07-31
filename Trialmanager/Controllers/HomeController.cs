@@ -10,6 +10,10 @@ namespace Trialmanager.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Feasibility = 5;
+            ViewBag.Live = 4;
+            ViewBag.Closed = 0;
+            ViewBag.Late = 5;
             return View();
         }
 

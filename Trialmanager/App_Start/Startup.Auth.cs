@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -63,6 +64,22 @@ namespace Trialmanager
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            //create roles if they don't already exist
+            var context = new ApplicationDbContext();
+            var rolemanager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            if (!rolemanager.RoleExists("Admin"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Admin";
+                rolemanager.Create(role);
+            }
+            if (!rolemanager.RoleExists("User"))
+            {
+                var role = new IdentityRole();
+                role.Name = "User";
+                rolemanager.Create(role);
+            }
         }
     }
 }
