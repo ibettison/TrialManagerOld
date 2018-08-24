@@ -18,24 +18,31 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var reminder in ViewBag.notifications)
+            @foreach (var reminder in ViewBag.reminders)
             {
                 <tr>
                     <td>@reminder.Reminder</td>
                     <td>@reminder.DueDate</td>
                     <td>
-                        @(ViewBag.DayTillDue = (reminder.DueDate - ViewBag.Today).TotalDays)
+                        @(ViewBag.DaysTillDue = (reminder.DueDate - ViewBag.Today).TotalDays)
                         @if (ViewBag.DaysTillDue > 100)
                         {
                             <span class="pull-right-container">
-                                <span class="label pull-right bg-green">@ViewBag.DayTillDue days</span>
+                                <span class="label pull-right bg-green">@ViewBag.DayTillDue <i class="fa fa-thumbs-o-up"></i></span>
+                            </span>
+                        }
+                        else if (ViewBag.DaysTillDue < 100 && ViewBag.DaysTillDue > 50)
+                        {
+                            <span class="pull-right-container">
+                                <span class="label pull-right bg-yellow">@ViewBag.DayTillDue <i class="fa fa-calendar-times-o"></i></span>
                             </span>
                         }
                         else
                         {
-                            @ViewBag.DaysTillDue
+                            <span class="pull-right-container">
+                                <span class="label pull-right bg-red">@ViewBag.DayTillDue <i class="fa fa-warning"></i></span>
+                            </span>
                         }
-
                     </td>
                 </tr>
             }

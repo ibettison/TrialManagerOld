@@ -229,6 +229,7 @@ namespace Trialmanager.Controllers
             ViewBag.notifications = notes.Count > 0 ? notes : null;
             return PartialView("_ListNotes");
         }
+
         [HttpPost]
         public ActionResult ListReminders(TrialRemindersModels model)
         {

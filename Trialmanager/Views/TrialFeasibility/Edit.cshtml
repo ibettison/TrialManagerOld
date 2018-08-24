@@ -430,19 +430,27 @@
                                                         <td>@reminder.Reminder</td>
                                                         <td>@reminder.DueDate</td>
                                                         <td>
-                                                            
-                                                             @(ViewBag.DaysTillDue = (reminder.DueDate - ViewBag.Today).TotalDays)
+                                                                                                
+                                                                @(ViewBag.DaysTillDue = (reminder.DueDate - ViewBag.Today).TotalDays)
                                                             @if (ViewBag.DaysTillDue > 100)
                                                             {
                                                                 <span class="pull-right-container">
                                                                     <span class="label pull-right bg-green">@ViewBag.DayTillDue <i class="fa fa-thumbs-o-up"></i></span>
                                                                 </span>
                                                             }
+                                                            else if (ViewBag.DaysTillDue < 100 && ViewBag.DaysTillDue > 50)
+                                                            {
+                                                                <span class="pull-right-container">
+                                                                    <span class="label pull-right bg-yellow">@ViewBag.DayTillDue <i class="fa fa-calendar-times-o"></i></span>
+                                                                </span>
+                                                            }
                                                             else
                                                             {
-                                                                @ViewBag.DaysTillDue
+                                                                <span class="pull-right-container">
+                                                                    <span class="label pull-right bg-red">@ViewBag.DayTillDue <i class="fa fa-warning"></i></span>
+                                                                </span>
                                                             }
-
+                                    
                                                         </td>
                                                     </tr>
                                                 }
@@ -581,6 +589,7 @@
                 success: function(data) {
                     $("#ListOfReminders").html(data);
                     $('#reminder').val("");
+                    $('dueDate').val("");
                 }
             });
         });
