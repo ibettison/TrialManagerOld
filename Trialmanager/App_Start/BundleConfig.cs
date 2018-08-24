@@ -14,7 +14,9 @@ namespace Trialmanager
                         "~/Scripts/jquery.dataTables.min.js",
                         "~/Scripts/select2.full.js",
                         "~/Scripts/icheck.js",
-                        "~/scripts/bootstrap-datepicker.js"));
+                        "~/scripts/bootstrap-datepicker.js",
+                        "~/scripts/jquery.unobtrusive-ajax.js",
+                        "~/scripts/jquery.validate.unobtrusive.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

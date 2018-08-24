@@ -9,7 +9,7 @@ namespace Trialmanager.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Trialmanager.Models.ApplicationDbContext";
         }
 

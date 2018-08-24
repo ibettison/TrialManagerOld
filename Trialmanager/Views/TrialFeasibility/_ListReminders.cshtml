@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+    ViewBag.Today = DateTime.Today;
+}
+
+@if (ViewBag.reminders == null)
+{
+    <p> There are no Reminders currently attached to this Trial.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Reminder</th>
+                <th>Due Date</th>
+                <th>Days till due</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reminder in ViewBag.notifications)
+            {
+                <tr>
+                    <td>@reminder.Reminder</td>
+                    <td>@reminder.DueDate</td>
+                    <td>
+                        @(ViewBag.DayTillDue = (reminder.DueDate - ViewBag.Today).TotalDays)
+                        @if (ViewBag.DaysTillDue > 100)
+                        {
+                            <span class="pull-right-container">
+                                <span class="label pull-right bg-green">@ViewBag.DayTillDue days</span>
+                            </span>
+                        }
+                        else
+                        {
+                            @ViewBag.DaysTillDue
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

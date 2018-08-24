@@ -31,5 +31,26 @@ namespace Trialmanager.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<AccessTypesModels> AccessTypesModels { get; set; }
+        public DbSet<NotesModels> NotesModels { get; set; }
+        public DbSet<ContactStatusModels> ContactStatusModels { get; set; }
+        public DbSet<RolesModels> RolesModels { get; set; }
+        public DbSet<ContactsModels> ContactsModels { get; set; }
+        public DbSet<PhaseModels> PhaseModels { get; set; }
+        public DbSet<ContractTypesModels> ContractTypesModels { get; set; }
+        public DbSet<DiseaseTherapyAreaModels> DiseaseTherapyAreaModels { get; set; }
+        public DbSet<GrantTypeModels> GrantTypeModels { get; set; }
+        public DbSet<ResearchPassportModels> ResearchPassportModels { get; set; }
+        public DbSet<StaffPassportModels> StaffPassportModels { get; set; }
+        public DbSet<TrialFeasibilityModels> TrialFeasibilityModels { get; set; }
+        public DbSet<TrialRecordsModels> TrialRecordsModels { get; set; }
+        public DbSet<TrialsModels> TrialsModels { get; set; }
+        public DbSet<TrialTypeModels> TrialTypeModels { get; set; }
+        public DbSet<TrialSetupModels> TrialSetupModels { get; set; }
+        public DbSet<TrialLocationModels> TrialLocationModels { get; set; }
+        public DbSet<TrialRemindersModels> TrialRemindersModels { get; set; }
+
+        public System.Data.Entity.DbSet<Trialmanager.Models.TrialContactsModels> TrialContactsModels { get; set; }
     }
 }

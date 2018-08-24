@@ -195,10 +195,24 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccessTypesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\ContactStatusController.cs" />
+    <Compile Include="Controllers\DiseaseTherapyAreaController.cs" />
+    <Compile Include="Controllers\GrantTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhaseController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TrialContactsController.cs" />
+    <Compile Include="Controllers\TrialFeasibilityController.cs" />
+    <Compile Include="Controllers\TrialLocationController.cs" />
     <Compile Include="Controllers\TrialManagementController.cs" />
+    <Compile Include="Controllers\TrialRecordsController.cs" />
+    <Compile Include="Controllers\TrialRemindersController.cs" />
+    <Compile Include="Controllers\TrialSetupController.cs" />
+    <Compile Include="Controllers\TrialTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,10 +224,155 @@
     <Compile Include="Migrations\201807231408243_UserRole.Designer.cs">
       <DependentUpon>201807231408243_UserRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808071202359_CreateTrialTables.cs" />
+    <Compile Include="Migrations\201808071202359_CreateTrialTables.Designer.cs">
+      <DependentUpon>201808071202359_CreateTrialTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071209083_CreateTrialTables2.cs" />
+    <Compile Include="Migrations\201808071209083_CreateTrialTables2.Designer.cs">
+      <DependentUpon>201808071209083_CreateTrialTables2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071301158_TrialTablesCreation.cs" />
+    <Compile Include="Migrations\201808071301158_TrialTablesCreation.Designer.cs">
+      <DependentUpon>201808071301158_TrialTablesCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071309143_TrialTablesCreation1.cs" />
+    <Compile Include="Migrations\201808071309143_TrialTablesCreation1.Designer.cs">
+      <DependentUpon>201808071309143_TrialTablesCreation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071342422_Roles.cs" />
+    <Compile Include="Migrations\201808071342422_Roles.Designer.cs">
+      <DependentUpon>201808071342422_Roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071346478_Contacts.cs" />
+    <Compile Include="Migrations\201808071346478_Contacts.Designer.cs">
+      <DependentUpon>201808071346478_Contacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071357448_TrialAdd.cs" />
+    <Compile Include="Migrations\201808071357448_TrialAdd.Designer.cs">
+      <DependentUpon>201808071357448_TrialAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808080902460_ContactNote.cs" />
+    <Compile Include="Migrations\201808080902460_ContactNote.Designer.cs">
+      <DependentUpon>201808080902460_ContactNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808081121205_TrialFeasible.cs" />
+    <Compile Include="Migrations\201808081121205_TrialFeasible.Designer.cs">
+      <DependentUpon>201808081121205_TrialFeasible.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808081151317_TrialShortName.cs" />
+    <Compile Include="Migrations\201808081151317_TrialShortName.Designer.cs">
+      <DependentUpon>201808081151317_TrialShortName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808081414470_Commercial.cs" />
+    <Compile Include="Migrations\201808081414470_Commercial.Designer.cs">
+      <DependentUpon>201808081414470_Commercial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808100844220_records.cs" />
+    <Compile Include="Migrations\201808100844220_records.Designer.cs">
+      <DependentUpon>201808100844220_records.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808100853108_records1.cs" />
+    <Compile Include="Migrations\201808100853108_records1.Designer.cs">
+      <DependentUpon>201808100853108_records1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808100857019_ChangeRecordsModel.cs" />
+    <Compile Include="Migrations\201808100857019_ChangeRecordsModel.Designer.cs">
+      <DependentUpon>201808100857019_ChangeRecordsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808101236021_TrialSetup.cs" />
+    <Compile Include="Migrations\201808101236021_TrialSetup.Designer.cs">
+      <DependentUpon>201808101236021_TrialSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808101240572_TrialSetup1.cs" />
+    <Compile Include="Migrations\201808101240572_TrialSetup1.Designer.cs">
+      <DependentUpon>201808101240572_TrialSetup1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201103063_contactNotes.cs" />
+    <Compile Include="Migrations\201808201103063_contactNotes.Designer.cs">
+      <DependentUpon>201808201103063_contactNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201145144_contactNotesId.cs" />
+    <Compile Include="Migrations\201808201145144_contactNotesId.Designer.cs">
+      <DependentUpon>201808201145144_contactNotesId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201200031_contactNotesId1.cs" />
+    <Compile Include="Migrations\201808201200031_contactNotesId1.Designer.cs">
+      <DependentUpon>201808201200031_contactNotesId1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201228500_contactNotesId2.cs" />
+    <Compile Include="Migrations\201808201228500_contactNotesId2.Designer.cs">
+      <DependentUpon>201808201228500_contactNotesId2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201247388_contactNotesId3.cs" />
+    <Compile Include="Migrations\201808201247388_contactNotesId3.Designer.cs">
+      <DependentUpon>201808201247388_contactNotesId3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201325220_contactNotesId4.cs" />
+    <Compile Include="Migrations\201808201325220_contactNotesId4.Designer.cs">
+      <DependentUpon>201808201325220_contactNotesId4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201340420_contactNotesId5.cs" />
+    <Compile Include="Migrations\201808201340420_contactNotesId5.Designer.cs">
+      <DependentUpon>201808201340420_contactNotesId5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201349165_contactNotesId7.cs" />
+    <Compile Include="Migrations\201808201349165_contactNotesId7.Designer.cs">
+      <DependentUpon>201808201349165_contactNotesId7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211107172_trialContact.cs" />
+    <Compile Include="Migrations\201808211107172_trialContact.Designer.cs">
+      <DependentUpon>201808211107172_trialContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211118405_trialContact1.cs" />
+    <Compile Include="Migrations\201808211118405_trialContact1.Designer.cs">
+      <DependentUpon>201808211118405_trialContact1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221126573_notes.cs" />
+    <Compile Include="Migrations\201808221126573_notes.Designer.cs">
+      <DependentUpon>201808221126573_notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221249228_notes1.cs" />
+    <Compile Include="Migrations\201808221249228_notes1.Designer.cs">
+      <DependentUpon>201808221249228_notes1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221250427_notes2.cs" />
+    <Compile Include="Migrations\201808221250427_notes2.Designer.cs">
+      <DependentUpon>201808221250427_notes2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221252289_notes3.cs" />
+    <Compile Include="Migrations\201808221252289_notes3.Designer.cs">
+      <DependentUpon>201808221252289_notes3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808232118442_reminder.cs" />
+    <Compile Include="Migrations\201808232118442_reminder.Designer.cs">
+      <DependentUpon>201808232118442_reminder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccessTypesModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AjaxViewModels.cs" />
+    <Compile Include="Models\ContactsModels.cs" />
+    <Compile Include="Models\ContactStatusModels.cs" />
+    <Compile Include="Models\ContactViewModels.cs" />
+    <Compile Include="Models\ContractTypesModels.cs" />
+    <Compile Include="Models\DiseaseTherapyAreaModels.cs" />
+    <Compile Include="Models\GrantTypeModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NotesModels.cs" />
+    <Compile Include="Models\PhaseModels.cs" />
+    <Compile Include="Models\ResearchPassportModels.cs" />
+    <Compile Include="Models\RolesModels.cs" />
+    <Compile Include="Models\StaffPassportModels.cs" />
+    <Compile Include="Models\TrialContactsModels.cs" />
+    <Compile Include="Models\TrialFeasibilityModels.cs" />
+    <Compile Include="Models\TrialLocationModels.cs" />
+    <Compile Include="Models\TrialRecordsModels.cs" />
+    <Compile Include="Models\TrialRemindersModels.cs" />
+    <Compile Include="Models\TrialSetupModels.cs" />
+    <Compile Include="Models\TrialsModels.cs" />
+    <Compile Include="Models\TrialTypeModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -504,6 +663,8 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -559,6 +720,87 @@
     <Content Include="Views\Shared\_LayOutHeader.cshtml" />
     <Content Include="Views\TrialManagement\Index.cshtml" />
     <Content Include="Views\TrialManagement\Edit.cshtml" />
+    <Content Include="Views\AccessTypes\Create.cshtml" />
+    <Content Include="Views\AccessTypes\Delete.cshtml" />
+    <Content Include="Views\AccessTypes\Details.cshtml" />
+    <Content Include="Views\AccessTypes\Edit.cshtml" />
+    <Content Include="Views\AccessTypes\Index.cshtml" />
+    <Content Include="Views\ContactStatus\Create.cshtml" />
+    <Content Include="Views\ContactStatus\Delete.cshtml" />
+    <Content Include="Views\ContactStatus\Details.cshtml" />
+    <Content Include="Views\ContactStatus\Edit.cshtml" />
+    <Content Include="Views\ContactStatus\Index.cshtml" />
+    <Content Include="Views\Notes\Create.cshtml" />
+    <Content Include="Views\Notes\Delete.cshtml" />
+    <Content Include="Views\Notes\Details.cshtml" />
+    <Content Include="Views\Notes\Edit.cshtml" />
+    <Content Include="Views\Notes\Index.cshtml" />
+    <Content Include="Views\Phase\Create.cshtml" />
+    <Content Include="Views\Phase\Delete.cshtml" />
+    <Content Include="Views\Phase\Details.cshtml" />
+    <Content Include="Views\Phase\Edit.cshtml" />
+    <Content Include="Views\Phase\Index.cshtml" />
+    <Content Include="Views\TrialType\Create.cshtml" />
+    <Content Include="Views\TrialType\Delete.cshtml" />
+    <Content Include="Views\TrialType\Details.cshtml" />
+    <Content Include="Views\TrialType\Edit.cshtml" />
+    <Content Include="Views\TrialType\Index.cshtml" />
+    <Content Include="Views\TrialFeasibility\Create.cshtml" />
+    <Content Include="Views\TrialFeasibility\Delete.cshtml" />
+    <Content Include="Views\TrialFeasibility\Details.cshtml" />
+    <Content Include="Views\TrialFeasibility\Edit.cshtml" />
+    <Content Include="Views\TrialFeasibility\Index.cshtml" />
+    <Content Include="Views\DiseaseTherapyArea\Create.cshtml" />
+    <Content Include="Views\DiseaseTherapyArea\Delete.cshtml" />
+    <Content Include="Views\DiseaseTherapyArea\Details.cshtml" />
+    <Content Include="Views\DiseaseTherapyArea\Edit.cshtml" />
+    <Content Include="Views\DiseaseTherapyArea\Index.cshtml" />
+    <Content Include="Views\GrantType\Create.cshtml" />
+    <Content Include="Views\GrantType\Delete.cshtml" />
+    <Content Include="Views\GrantType\Details.cshtml" />
+    <Content Include="Views\GrantType\Edit.cshtml" />
+    <Content Include="Views\GrantType\Index.cshtml" />
+    <Content Include="Views\TrialRecords\Create.cshtml" />
+    <Content Include="Views\TrialRecords\Delete.cshtml" />
+    <Content Include="Views\TrialRecords\Details.cshtml" />
+    <Content Include="Views\TrialRecords\Edit.cshtml" />
+    <Content Include="Views\TrialRecords\Index.cshtml" />
+    <Content Include="Views\TrialFeasibility\ListRecords.cshtml" />
+    <Content Include="Views\TrialLocation\Create.cshtml" />
+    <Content Include="Views\TrialLocation\Delete.cshtml" />
+    <Content Include="Views\TrialLocation\Details.cshtml" />
+    <Content Include="Views\TrialLocation\Edit.cshtml" />
+    <Content Include="Views\TrialLocation\Index.cshtml" />
+    <Content Include="Views\TrialSetup\Create.cshtml" />
+    <Content Include="Views\TrialSetup\Delete.cshtml" />
+    <Content Include="Views\TrialSetup\Details.cshtml" />
+    <Content Include="Views\TrialSetup\Edit.cshtml" />
+    <Content Include="Views\TrialSetup\Index.cshtml" />
+    <Content Include="Views\TrialFeasibility\SetupNewRecord.cshtml" />
+    <Content Include="Views\TrialFeasibility\SetupEditRecord.cshtml" />
+    <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Contacts\Delete.cshtml" />
+    <Content Include="Views\Contacts\Details.cshtml" />
+    <Content Include="Views\Contacts\Edit.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\TrialContacts\Create.cshtml" />
+    <Content Include="Views\TrialContacts\Delete.cshtml" />
+    <Content Include="Views\TrialContacts\Details.cshtml" />
+    <Content Include="Views\TrialContacts\Edit.cshtml" />
+    <Content Include="Views\TrialContacts\Index.cshtml" />
+    <Content Include="Views\TrialFeasibility\_ListContacts.cshtml" />
+    <Content Include="Views\TrialFeasibility\_ListNotes.cshtml" />
+    <Content Include="Views\TrialReminders\Create.cshtml" />
+    <Content Include="Views\TrialReminders\Delete.cshtml" />
+    <Content Include="Views\TrialReminders\Details.cshtml" />
+    <Content Include="Views\TrialReminders\Edit.cshtml" />
+    <Content Include="Views\TrialReminders\Index.cshtml" />
+    <Content Include="Views\TrialFeasibility\_ListReminders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -580,6 +822,99 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807231408243_UserRole.resx">
       <DependentUpon>201807231408243_UserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071202359_CreateTrialTables.resx">
+      <DependentUpon>201808071202359_CreateTrialTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071209083_CreateTrialTables2.resx">
+      <DependentUpon>201808071209083_CreateTrialTables2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071301158_TrialTablesCreation.resx">
+      <DependentUpon>201808071301158_TrialTablesCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071309143_TrialTablesCreation1.resx">
+      <DependentUpon>201808071309143_TrialTablesCreation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071342422_Roles.resx">
+      <DependentUpon>201808071342422_Roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071346478_Contacts.resx">
+      <DependentUpon>201808071346478_Contacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071357448_TrialAdd.resx">
+      <DependentUpon>201808071357448_TrialAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080902460_ContactNote.resx">
+      <DependentUpon>201808080902460_ContactNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808081121205_TrialFeasible.resx">
+      <DependentUpon>201808081121205_TrialFeasible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808081151317_TrialShortName.resx">
+      <DependentUpon>201808081151317_TrialShortName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808081414470_Commercial.resx">
+      <DependentUpon>201808081414470_Commercial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808100844220_records.resx">
+      <DependentUpon>201808100844220_records.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808100853108_records1.resx">
+      <DependentUpon>201808100853108_records1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808100857019_ChangeRecordsModel.resx">
+      <DependentUpon>201808100857019_ChangeRecordsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101236021_TrialSetup.resx">
+      <DependentUpon>201808101236021_TrialSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101240572_TrialSetup1.resx">
+      <DependentUpon>201808101240572_TrialSetup1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201103063_contactNotes.resx">
+      <DependentUpon>201808201103063_contactNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201145144_contactNotesId.resx">
+      <DependentUpon>201808201145144_contactNotesId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201200031_contactNotesId1.resx">
+      <DependentUpon>201808201200031_contactNotesId1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201228500_contactNotesId2.resx">
+      <DependentUpon>201808201228500_contactNotesId2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201247388_contactNotesId3.resx">
+      <DependentUpon>201808201247388_contactNotesId3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201325220_contactNotesId4.resx">
+      <DependentUpon>201808201325220_contactNotesId4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201340420_contactNotesId5.resx">
+      <DependentUpon>201808201340420_contactNotesId5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201349165_contactNotesId7.resx">
+      <DependentUpon>201808201349165_contactNotesId7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211107172_trialContact.resx">
+      <DependentUpon>201808211107172_trialContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211118405_trialContact1.resx">
+      <DependentUpon>201808211118405_trialContact1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221126573_notes.resx">
+      <DependentUpon>201808221126573_notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221249228_notes1.resx">
+      <DependentUpon>201808221249228_notes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221250427_notes2.resx">
+      <DependentUpon>201808221250427_notes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221252289_notes3.resx">
+      <DependentUpon>201808221252289_notes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808232118442_reminder.resx">
+      <DependentUpon>201808232118442_reminder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
