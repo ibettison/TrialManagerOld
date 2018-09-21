@@ -100,7 +100,7 @@
                                                         @Html.ValidationMessageFor(model => model.ShortName, "", new { @class = "text-danger" })
                                                     </div>
                                                     <div class="form-group">
-                                                        @Html.TextAreaFor(model => model.TrialTitle, new { @class = "textarea form-control", @Rows = 4, PlaceHolder = "Full Trial title" })
+                                                        @Html.TextAreaFor(model => model.TrialTitle, new { @class = "textarea form-control", Rows = 4, PlaceHolder = "Full Trial title" })
                                                         @Html.ValidationMessageFor(model => model.TrialTitle, "", new { @class = "text-danger" })
                                                     </div>
                                                     <div class="form-group">
@@ -117,7 +117,7 @@
 
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            @Html.EditorFor(model => model.BhNumber, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                                            @Html.EditorFor(model => model.BhNumber, new { htmlAttributes = new { @class = "form-control",Title = "BH Number", disabled = "disabled" } })
                                                             <div class="input-group-addon">
                                                                 <a href="#" data-toggle="modal" data-target="#modal-default1">
                                                                     <i class="fa fa-edit"></i>
@@ -248,7 +248,7 @@
 
 
                             <div class="tab-pane" id="tab2">
-                                <p>@{ Html.RenderAction("ShowSetup", new { Id = @ViewBag.Id }); }</p>
+                                <p>@{ Html.RenderAction("ShowSetup", new { Id = ViewBag.Id }); }</p>
                             </div>
                             <div class="tab-pane" id="tab3">
                                 <p>Tab3</p>
@@ -259,11 +259,86 @@
                             <div class="tab-pane" id="tab5">
                                 <p>tab4</p>
                             </div>
-                            <div class="tab-pane" id="tab6">
-                                <p>tab4</p>
+                        <div class="tab-pane" id="tab6">
+                            <div id="ListOfDocuments">
+                                <p>@{ Html.RenderAction("ShowDocuments", new { Id = ViewBag.Id }); }</p>
                             </div>
+                            <section class="content container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="box box-solid box-primary">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Add New Document</h3>
+                                                <div class="box-tools pull-right">
+                                                    <!-- Buttons, labels, and many other things can be placed here! -->
+                                                    <!-- Here is a label for example -->
+                                                    <span class="label label-default">Adding a document...</span>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+
+                                                <div class="form-horizontal">
+                                                    <h4>Add a Document</h4>
+                                                    <hr />
+                                                    @using (Html.BeginForm("AddDocument","TrialFeasibility", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                    {
+                                                        <div class="form-group">
+                                                            <div class="col-md-2">
+                                                                <label class="control-label">Link to the File</label>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-12">
+                                                                @Html.Editor("UploadFile", new {htmlAttributes = new {@class = "form-control", Type = "File"}})
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-2">
+                                                                <Label class="control-label">File Version</Label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                @Html.Editor("DocumentVersion", new { htmlAttributes = new { @class = "form-control", PlaceHolder = "File Version" } })
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                                <div class="col-md-2">
+                                                                    <label class="control-label">Document Type</label>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    @Html.DropDownList("DocumentType", new SelectList(ViewBag.DocumentTypes, "Id", "TypeName"), null, htmlAttributes: new { @class = "form-control" })
+                                                                </div>
+                                                            </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-2">
+                                                                <label class="control-label">Description</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                @Html.TextArea("DocumentDescription", new {@class = "form-control", @Rows = 4, PlaceHolder = "Add a description for the document"})
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" name="TrialId" id="TrialId" value="@ViewBag.Id"/>
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <input type="submit" class="btn btn-default btn-block" value="Upload a Document">
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                             <div class="tab-pane" id="tab7">
-                                @*        <p>@{ Html.RenderAction("listAddedRecords", new {Id = @ViewBag.Id}); }</p>*@
+                                <p>@{ Html.RenderAction("listAddedRecords", new {Id = ViewBag.Id}); }</p>
                             </div>
                         </div>
                     </div>
@@ -291,7 +366,7 @@
                                     }
                                     else
                                     {
-                                        <table class="table table-bordered table-striped">
+                                        <table id="contacts" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
                                                 <th>Contact Name</th>
@@ -324,11 +399,11 @@
                                 
                                 <div class="input-group">
                                     <div class="col-md-6">
-                                        <label for="ContactSel">Contact List</label>
+                                        <label>Contact List</label>
                                         @Html.DropDownList("Contacts", new SelectList(ViewBag.Contacts, "Id", "ContactName"), null, htmlAttributes: new {@class = "form-control", id = "ContactSel"})
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="RoleSel">Role List</label>
+                                        <label>Role List</label>
                                         @Html.DropDownList("Roles", new SelectList(ViewBag.Roles, "Id", "RoleName"), null, htmlAttributes: new {@class = "form-control", id = "RoleSel"})
                                     </div>
                                 </div>
@@ -360,7 +435,7 @@
                                     }
                                     else
                                     {
-                                        <table class="table table-bordered table-striped">
+                                        <table id="notifications" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
                                                 <th>Date\Time</th>
@@ -515,9 +590,10 @@
                     $.ajax({
                         type: 'POST',
                         url: '/TrialFeasibility/AjaxEdit',
-                        data: JSON.stringify(postData),
-                        contentType: 'application/json',
-                        dataType: 'json'
+                        data: postData,
+                        success: function(data) {
+                            $("#tab7").html(data);
+                        }
                     });
                     $('#newDiv').remove();
                     $('#message').remove();
@@ -592,6 +668,35 @@
                     $('dueDate').val("");
                 }
             });
+        });
+
+        $("#docSubmit").click(function() {
+            alert($('#DocLink').val());
+            var postData = {
+                UploadFile: $('#DocLink').val(),
+                DocumentVersion: $('#DocVersion').val(),
+                DocumentType: $('#DocType').val(),
+                DocumentDescription: $('#DocDescription').val(),
+                TrialId: @ViewBag.Id }
+            $.ajax({
+                url: '/TrialFeasibility/AddDocument',
+                type: 'POST',
+                data: postData,
+                success: function(data) {
+                    $("#ListOfDocuments").html(data);
+                    $('#DocLink').val("");
+                    $('#DocVersion').val("");
+                    $('#DocDescription').val("");
+                    $('#Doctype').val(0);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#listDocs').DataTable();
+            $('#contacts').DataTable();
+            $('#notifications').DataTable();
+            
         });
     </script>
 }

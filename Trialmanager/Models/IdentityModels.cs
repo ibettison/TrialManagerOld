@@ -50,7 +50,9 @@ namespace Trialmanager.Models
         public DbSet<TrialSetupModels> TrialSetupModels { get; set; }
         public DbSet<TrialLocationModels> TrialLocationModels { get; set; }
         public DbSet<TrialRemindersModels> TrialRemindersModels { get; set; }
-
+        public DbSet<TrialDocumentsModels> TrialDocumentsModels { get; set; }
+        public DbSet<DocumentTypesModels> DocumentTypesModels { get; set; }
+        public DbSet<TrialStartedModels> TrialStartedModels { get; set; }
         public System.Data.Entity.DbSet<Trialmanager.Models.TrialContactsModels> TrialContactsModels { get; set; }
     }
 }

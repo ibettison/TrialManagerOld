@@ -200,18 +200,21 @@
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\ContactStatusController.cs" />
     <Compile Include="Controllers\DiseaseTherapyAreaController.cs" />
+    <Compile Include="Controllers\DocumentTypesController.cs" />
     <Compile Include="Controllers\GrantTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhaseController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TrialContactsController.cs" />
+    <Compile Include="Controllers\TrialDocumentsController.cs" />
     <Compile Include="Controllers\TrialFeasibilityController.cs" />
     <Compile Include="Controllers\TrialLocationController.cs" />
     <Compile Include="Controllers\TrialManagementController.cs" />
     <Compile Include="Controllers\TrialRecordsController.cs" />
     <Compile Include="Controllers\TrialRemindersController.cs" />
     <Compile Include="Controllers\TrialSetupController.cs" />
+    <Compile Include="Controllers\TrialStartedController.cs" />
     <Compile Include="Controllers\TrialTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -348,6 +351,34 @@
     <Compile Include="Migrations\201808232118442_reminder.Designer.cs">
       <DependentUpon>201808232118442_reminder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809132152105_Documents.cs" />
+    <Compile Include="Migrations\201809132152105_Documents.Designer.cs">
+      <DependentUpon>201809132152105_Documents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809132154400_Documents1.cs" />
+    <Compile Include="Migrations\201809132154400_Documents1.Designer.cs">
+      <DependentUpon>201809132154400_Documents1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809201506145_DcumentUploads.cs" />
+    <Compile Include="Migrations\201809201506145_DcumentUploads.Designer.cs">
+      <DependentUpon>201809201506145_DcumentUploads.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809201517293_DcumentUploads1.cs" />
+    <Compile Include="Migrations\201809201517293_DcumentUploads1.Designer.cs">
+      <DependentUpon>201809201517293_DcumentUploads1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809211343124_docFileName.cs" />
+    <Compile Include="Migrations\201809211343124_docFileName.Designer.cs">
+      <DependentUpon>201809211343124_docFileName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809211345290_docStarted.cs" />
+    <Compile Include="Migrations\201809211345290_docStarted.Designer.cs">
+      <DependentUpon>201809211345290_docStarted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809211348141_docStarted2.cs" />
+    <Compile Include="Migrations\201809211348141_docStarted2.Designer.cs">
+      <DependentUpon>201809211348141_docStarted2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessTypesModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -357,6 +388,7 @@
     <Compile Include="Models\ContactViewModels.cs" />
     <Compile Include="Models\ContractTypesModels.cs" />
     <Compile Include="Models\DiseaseTherapyAreaModels.cs" />
+    <Compile Include="Models\DocumentTypesModels.cs" />
     <Compile Include="Models\GrantTypeModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -366,12 +398,14 @@
     <Compile Include="Models\RolesModels.cs" />
     <Compile Include="Models\StaffPassportModels.cs" />
     <Compile Include="Models\TrialContactsModels.cs" />
+    <Compile Include="Models\TrialDocumentsModels.cs" />
     <Compile Include="Models\TrialFeasibilityModels.cs" />
     <Compile Include="Models\TrialLocationModels.cs" />
     <Compile Include="Models\TrialRecordsModels.cs" />
     <Compile Include="Models\TrialRemindersModels.cs" />
     <Compile Include="Models\TrialSetupModels.cs" />
     <Compile Include="Models\TrialsModels.cs" />
+    <Compile Include="Models\TrialStartedModels.cs" />
     <Compile Include="Models\TrialTypeModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -801,9 +835,25 @@
     <Content Include="Views\TrialReminders\Edit.cshtml" />
     <Content Include="Views\TrialReminders\Index.cshtml" />
     <Content Include="Views\TrialFeasibility\_ListReminders.cshtml" />
+    <Content Include="Views\DocumentTypes\Create.cshtml" />
+    <Content Include="Views\DocumentTypes\Delete.cshtml" />
+    <Content Include="Views\DocumentTypes\Details.cshtml" />
+    <Content Include="Views\DocumentTypes\Edit.cshtml" />
+    <Content Include="Views\DocumentTypes\Index.cshtml" />
+    <Content Include="Views\TrialDocuments\Create.cshtml" />
+    <Content Include="Views\TrialDocuments\Delete.cshtml" />
+    <Content Include="Views\TrialDocuments\Details.cshtml" />
+    <Content Include="Views\TrialDocuments\Edit.cshtml" />
+    <Content Include="Views\TrialDocuments\Index.cshtml" />
+    <Content Include="Views\TrialFeasibility\_ListDocuments.cshtml" />
+    <Content Include="Views\TrialStarted\Create.cshtml" />
+    <Content Include="Views\TrialStarted\Delete.cshtml" />
+    <Content Include="Views\TrialStarted\Details.cshtml" />
+    <Content Include="Views\TrialStarted\Edit.cshtml" />
+    <Content Include="Views\TrialStarted\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="Content\css\flat\" />
     <Folder Include="Content\css\futurico\" />
     <Folder Include="Content\css\line\" />
@@ -915,6 +965,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808232118442_reminder.resx">
       <DependentUpon>201808232118442_reminder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809132152105_Documents.resx">
+      <DependentUpon>201809132152105_Documents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809132154400_Documents1.resx">
+      <DependentUpon>201809132154400_Documents1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201506145_DcumentUploads.resx">
+      <DependentUpon>201809201506145_DcumentUploads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201517293_DcumentUploads1.resx">
+      <DependentUpon>201809201517293_DcumentUploads1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809211343124_docFileName.resx">
+      <DependentUpon>201809211343124_docFileName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809211345290_docStarted.resx">
+      <DependentUpon>201809211345290_docStarted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809211348141_docStarted2.resx">
+      <DependentUpon>201809211348141_docStarted2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

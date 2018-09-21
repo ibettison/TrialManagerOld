@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -106,7 +107,8 @@ namespace Trialmanager.Controllers
 
             ViewBag.Contacts = db.ContactsModels;
             ViewBag.Roles = db.RolesModels;
-            
+            ViewBag.DocumentTypes = db.DocumentTypesModels;
+
             return View(trialFeasibilityModels);
         }
 
@@ -161,7 +163,7 @@ namespace Trialmanager.Controllers
                 db.Entry(fModel).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("Edit", new {model.Id} );
+            return RedirectToAction("ListAddedRecords", new {model.Id} );
         }
 
         public ActionResult ListAddedRecords(int? id)
@@ -258,7 +260,10 @@ namespace Trialmanager.Controllers
         }
         public ActionResult ShowSetup(int? id)
         {
-            TrialSetupModels trialSetupModels = db.TrialSetupModels.Find(id);
+
+            var trialSetupModels = (from ts in db.TrialSetupModels
+                where ts.TrialId == id
+                select ts).FirstOrDefault();
             var setupId = (from s in db.TrialSetupModels
                 where s.TrialId == id
                 select s).FirstOrDefault();
@@ -285,6 +290,66 @@ namespace Trialmanager.Controllers
             ViewBag.PhaseId = new SelectList(db.PhaseModels, "Id", "PhaseName", trialFeasibilityModels.PhaseId);
             ViewBag.TrialTypeId = new SelectList(db.TrialTypeModels, "Id", "TrialTypeName", trialFeasibilityModels.TrialTypeId);
             return PartialView("SetupEditRecord",trialSetupModels);
+        }
+
+        public ActionResult ShowDocuments(int? id)
+        {
+
+            var trialDocumentsModels = (from td in db.TrialDocumentsModels
+                where td.TrialId == id
+                select td).ToList();
+            ViewBag.Documents = trialDocumentsModels.Count > 0 ? trialDocumentsModels:null;
+            ViewBag.DocumentTypes = db.DocumentTypesModels;
+            return PartialView("_ListDocuments");
+        }
+
+        [HttpPost]
+        public ActionResult AddDocument(TrialDocumentsModels model)
+        {
+            if (ModelState.IsValid)
+            {
+                HttpPostedFileBase file = model.UploadFile;
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    if (fileName != null)
+                    {
+                        var path = Path.Combine(Server.MapPath("~/App_Data/UploadedFiles"), fileName);
+                        file.SaveAs(path);
+                        model.DocumentLink = path;
+                        model.DocumentFileName = fileName;
+                    }
+                    var newDoc = new TrialDocumentsModels()
+                        {
+                            DateTime= DateTime.Now,
+                            UploadedBy = User.Identity.Name,
+                            TrialId = model.TrialId,
+                            DocumentFileName = model.DocumentFileName,
+                            DocumentLink = model.DocumentLink,
+                            DocumentVersion = model.DocumentVersion,
+                            DocumentDescription = model.DocumentDescription,
+                            DocumentType = model.DocumentType
+                        };
+                    db.TrialDocumentsModels.Add(newDoc);
+                    db.SaveChanges();
+                }
+
+               
+            }
+            return RedirectToAction("Edit", new { Id = model.TrialId });
+        }
+
+        public ActionResult DownloadFile(string fileName)
+        {
+            byte[] fileData = System.IO.File.ReadAllBytes(fileName);
+            string contentType = MimeMapping.GetMimeMapping(fileName);
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = Path.GetFileName(fileName),
+                Inline = false,
+            };
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+            return File(fileData, contentType);
         }
 
         // GET: TrialFeasibility/Delete/5
