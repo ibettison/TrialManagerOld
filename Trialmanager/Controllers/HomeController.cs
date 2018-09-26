@@ -8,12 +8,13 @@ using Trialmanager.Models;
 
 namespace Trialmanager.Controllers
 {
+    
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            
             ViewBag.Feasibility = 5;
             ViewBag.Live = 4;
             ViewBag.Closed = 0;
@@ -21,23 +22,10 @@ namespace Trialmanager.Controllers
             var trialFeasibilityModels = db.TrialFeasibilityModels.Include(t => t.DiseaseTherapyAreaName).Include(t => t.GrantTypeName).Include(t => t.PhaseName).Include(t => t.TrialTypeName);
             return View(trialFeasibilityModels.ToList());
         }
-
+        [Authorize(Roles="CRF-TrialManager_Database")]
         public ActionResult Edit(int? id)
         {
             return RedirectToAction("Edit","TrialFeasibility", new {@id=id});
-        }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
