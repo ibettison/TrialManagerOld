@@ -16,7 +16,8 @@ namespace Trialmanager
                         "~/Scripts/icheck.js",
                         "~/scripts/bootstrap-datepicker.js",
                         "~/scripts/jquery.unobtrusive-ajax.js",
-                        "~/scripts/jquery.validate.unobtrusive.js"));
+                        "~/scripts/jquery.validate.unobtrusive.js",
+                        "~/Scripts/js.cookie.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -39,7 +40,7 @@ namespace Trialmanager
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/content/bootstrap-theme.css",
+                      //"~/content/bootstrap-theme.css",
                       "~/Content/Site.css",
                       "~/Content/font-awesome.css",
                       "~/admin-lte/css/AdminLTE.css",

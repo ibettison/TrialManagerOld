@@ -100,7 +100,7 @@
                                                         @Html.ValidationMessageFor(model => model.ShortName, "", new { @class = "text-danger" })
                                                     </div>
                                                     <div class="form-group">
-                                                        @Html.TextAreaFor(model => model.TrialTitle, new { @class = "textarea form-control", Rows = 4, PlaceHolder = "Full Trial title" })
+                                                        @Html.TextAreaFor(model => model.TrialTitle, new { @class = "form-control", Rows = 4, PlaceHolder = "Full Trial title" })
                                                         @Html.ValidationMessageFor(model => model.TrialTitle, "", new { @class = "text-danger" })
                                                     </div>
                                                     <div class="form-group">
@@ -117,7 +117,7 @@
 
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            @Html.EditorFor(model => model.BhNumber, new { htmlAttributes = new { @class = "form-control",Title = "BH Number", disabled = "disabled" } })
+                                                            @Html.EditorFor(model => model.BhNumber, new { htmlAttributes = new { @class = "form-control", Title = "BH Number", disabled = "disabled" } })
                                                             <div class="input-group-addon">
                                                                 <a href="#" data-toggle="modal" data-target="#modal-default1">
                                                                     <i class="fa fa-edit"></i>
@@ -234,18 +234,81 @@
                                                     </div>
                                                 </div>
                                             }
-
-                                            <div>
-                                                @Html.ActionLink("Back to List", "Index")
-                                            </div>
                                         </div>
                                     </div><!-- /.box-body -->
-                                    
+                                    <!-- /.box -->
                                 </div>
-                                <!-- /.box -->
+                                @if (ViewBag.progress == null)
+                                {
+                                    <div class="box-footer">
+                                        <!--Use this to keep the data last typed in a cookie so that it can be saved properly later-->
+                                        <div class="input-group">
+                                            <div class="col-md-12">
+                                                <label class="input-group">Trial Progress</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                @Html.RadioButton("StartedTrial", "Yes") Trial Started
+                                                @Html.RadioButton("StartedTrial", "No") Trial didn't Start
 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="label">Reason Trial did not Start</label>
+                                            </div>
+                                            @Html.TextArea("Reason", new { @class = "form-control", Rows = 4, PlaceHolder = "Enter the reason the Trial did not start" })
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-default btn-block" id="saveTrial">Save Trial Progress</button>
+                                        </div>
+                                    </div>
+                                    <!-- box-footer -->
+                                }
+                                else
+                                {
+                                    foreach (var item in ViewBag.progress)
+                                    {
+                                        <div class="box-footer">
+                                            <!--Use this to keep the data last typed in a cookie so that it can be saved properly later-->
+                                            <div class="input-group">
+                                                <div class="col-md-12">
+                                                    <label class="input-group">Trial Progress</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    @if (item.Started == "Yes")
+                                                    {
+                                                        @Html.RadioButton("StartedTrial", "Yes", new { @checked = "checked"} )
+                                                        @Html.Label("Trial Started")
+                                                        @Html.RadioButton("StartedTrial","No")
+                                                        @Html.Label("Trial didn't Start ")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.RadioButton("StartedTrial", "Yes") 
+                                                        @Html.Label("Trial Started")
+                                                        @Html.RadioButton("StartedTrial", "No", new { @checked = "checked"}) 
+                                                        @Html.Label("Trial didn't Start")
+                                                    }
+
+
+                                                </div>
+                                            </div>
+                                            @if (item.Started == "No")
+                                            {
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label class="label">Reason Trial did not Start</label>
+                                                    </div>
+                                                    <textarea class="form-control" rows="4">@item.Reason</textarea>
+                                                </div>
+                                            }
+                                            
+                                        </div>
+                                    <!-- box-footer -->
+                                    }
+
+                                }
                             </div>
-
 
                             <div class="tab-pane" id="tab2">
                                 <p>@{ Html.RenderAction("ShowSetup", new { Id = ViewBag.Id }); }</p>
@@ -670,24 +733,18 @@
             });
         });
 
-        $("#docSubmit").click(function() {
-            alert($('#DocLink').val());
+        $("#saveTrial").click(function() {
+            alert($("input[name='StartedTrial']:checked").val());
             var postData = {
-                UploadFile: $('#DocLink').val(),
-                DocumentVersion: $('#DocVersion').val(),
-                DocumentType: $('#DocType').val(),
-                DocumentDescription: $('#DocDescription').val(),
+                Started: $("input[name='StartedTrial']:checked").val(),
+                Reason: $('#Reason').val(),
                 TrialId: @ViewBag.Id }
             $.ajax({
-                url: '/TrialFeasibility/AddDocument',
+                url: '/TrialFeasibility/AddProgress',
                 type: 'POST',
                 data: postData,
                 success: function(data) {
-                    $("#ListOfDocuments").html(data);
-                    $('#DocLink').val("");
-                    $('#DocVersion').val("");
-                    $('#DocDescription').val("");
-                    $('#Doctype').val(0);
+                    $("#Progress").html(data);
                 }
             });
         });

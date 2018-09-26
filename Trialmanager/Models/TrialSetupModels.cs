@@ -11,6 +11,8 @@ namespace Trialmanager.Models
     {
         [Key]
         public int Id { get; set; }
+        public string ProjectIdentifier { get; set; }
+        public string ResearchDevelopmentId { get; set; }
         public string GrantFunderRef { get; set; }
         public string SponsorRef { get; set; }
         public string RecRef { get; set; }

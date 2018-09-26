@@ -41,6 +41,9 @@ namespace Trialmanager.Controllers
         // GET: TrialFeasibility/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "New Trial";
+            ViewBag.Small = "Create a New trial";
+            ViewBag.Link = "Dashboard";
             ViewBag.DiseaseTherapyAreaId = new SelectList(db.DiseaseTherapyAreaModels, "Id", "DiseaseTherapyAreaName");
             ViewBag.GrantTypeId = new SelectList(db.GrantTypeModels, "Id", "GrantTypeName");
             ViewBag.PhaseId = new SelectList(db.PhaseModels, "Id", "PhaseName");
@@ -56,6 +59,9 @@ namespace Trialmanager.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,ShortName,TrialTitle,ApplicationReference,BhNumber,TrialTypeId,Commercial,PhaseId,SampleSize,GrantTypeId,FundingStream,GrantDeadlineDate,UniConsultancyAgreement,NhsConsultancyAgreement,DiseaseTherapyAreaId")] TrialFeasibilityModels trialFeasibilityModels)
         {
+            ViewBag.Title = "New Trial";
+            ViewBag.Small = "Create a New trial";
+            ViewBag.Link = "Dashboard";
             if (ModelState.IsValid)
             {
                 db.TrialFeasibilityModels.Add(trialFeasibilityModels);
@@ -98,6 +104,11 @@ namespace Trialmanager.Controllers
                          select r).ToList();
             ViewBag.reminders = reminders.Count > 0 ? reminders : null;
 
+            var progress = (from p in db.TrialStartedModels
+                where p.TrialId == id
+                select p).ToList();
+            ViewBag.progress = progress.Count > 0 ? progress : null;
+
             ViewBag.User = User.Identity.Name;
             ViewBag.Id = id;
             ViewBag.DiseaseTherapyAreaId = new SelectList(db.DiseaseTherapyAreaModels, "Id", "DiseaseTherapyAreaName", trialFeasibilityModels.DiseaseTherapyAreaId);
@@ -117,7 +128,6 @@ namespace Trialmanager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,ShortName,TrialTitle,ApplicationReference,BhNumber,TrialTypeId,Commercial,PhaseId,SampleSize,GrantTypeId,FundingStream,GrantDeadlineDate,UniConsultancyAgreement,NhsConsultancyAgreement,DiseaseTherapyAreaId")] TrialFeasibilityModels trialFeasibilityModels)
         {
             if (ModelState.IsValid)
@@ -352,6 +362,24 @@ namespace Trialmanager.Controllers
             return File(fileData, contentType);
         }
 
+        public ActionResult AddProgress(TrialStartedModels model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var newTrialStart = new TrialStartedModels()
+                {
+                    Reason = model.Reason,
+                    DateTime = DateTime.Now,
+                    Started = model.Started,
+                    TrialId = model.TrialId
+                };
+                db.TrialStartedModels.Add(newTrialStart);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Edit", new { Id = model.TrialId });
+        }
         // GET: TrialFeasibility/Delete/5
         public ActionResult Delete(int? id)
         {

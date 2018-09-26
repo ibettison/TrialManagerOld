@@ -11,7 +11,7 @@ namespace Trialmanager.Models
     {
         [Key]
         public int Id { get; set; }
-        public bool Started { get; set; }
+        public string Started { get; set; }
         public int TrialId { get; set; }
         public string Reason { get; set; }
         public DateTime DateTime { get; set; }

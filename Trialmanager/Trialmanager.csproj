@@ -379,6 +379,14 @@
     <Compile Include="Migrations\201809211348141_docStarted2.Designer.cs">
       <DependentUpon>201809211348141_docStarted2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809241053586_started.cs" />
+    <Compile Include="Migrations\201809241053586_started.Designer.cs">
+      <DependentUpon>201809241053586_started.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809251122156_TrialSetupChanges.cs" />
+    <Compile Include="Migrations\201809251122156_TrialSetupChanges.Designer.cs">
+      <DependentUpon>201809251122156_TrialSetupChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessTypesModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -703,6 +711,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js.cookie.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -986,6 +995,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809211348141_docStarted2.resx">
       <DependentUpon>201809211348141_docStarted2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241053586_started.resx">
+      <DependentUpon>201809241053586_started.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251122156_TrialSetupChanges.resx">
+      <DependentUpon>201809251122156_TrialSetupChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

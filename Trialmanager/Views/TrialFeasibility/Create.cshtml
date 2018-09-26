@@ -47,13 +47,18 @@
                                 <div class="form-horizontal">
                                     <h4>TrialFeasibilityModels</h4>
                                     <hr />
+                                        <div id="alertMessage" class="alert alert-warning alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                            <h4><i class="icon fa fa-warning"></i>Alert!</h4>
+                                            This form has been populated by cookies, saved the last time a Trial was entered. Select delete at the bottom of the form to remove the field entries and start a freash
+                                        </div>
                                     <div class="form-group">
                                         
                                         @Html.EditorFor(model => model.ShortName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter Trial Short Name" } })
                                         @Html.ValidationMessageFor(model => model.ShortName, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
-                                        @Html.TextAreaFor(model => model.TrialTitle, new {@class = "textarea form-control", @Rows=4, PlaceHolder = "Full Trial title"})
+                                        @Html.TextAreaFor(model => model.TrialTitle, new {@class = "form-control", @Rows=4, PlaceHolder = "Full Trial title"})
                                         @Html.ValidationMessageFor(model => model.TrialTitle, "", new {@class = "text-danger"})
                                     </div>
                                     <div class="form-group">
@@ -66,8 +71,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.DropDownList("TrialTypeId", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.TrialTypeId, "", new { @class = "text-danger" })
+                                        @Html.Label("Trial Type")
+                                        @Html.DropDownList("TrialTypeId", null, htmlAttributes: new {@class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.TrialTypeId, "", new {@class = "text-danger"})
                                     </div>
 
                                     <div class="form-group">
@@ -79,8 +85,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.DropDownList("PhaseId", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.PhaseId, "", new { @class = "text-danger" })
+                                        @Html.Label("Trial Phase")
+                                        @Html.DropDownList("PhaseId", null, htmlAttributes: new {@class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.PhaseId, "", new {@class = "text-danger"})
                                     </div>
 
                                     <div class="form-group">
@@ -89,8 +96,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.DropDownList("GrantTypeId", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.GrantTypeId, "", new { @class = "text-danger" })
+                                        @Html.Label("Grant Type")
+                                        @Html.DropDownList("GrantTypeId", null, htmlAttributes: new {@class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.GrantTypeId, "", new {@class = "text-danger"})
                                     </div>
 
                                     <div class="form-group">
@@ -123,12 +131,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.DropDownList("DiseaseTherapyAreaId", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.DiseaseTherapyAreaId, "", new { @class = "text-danger" })
+                                        @Html.Label("Disease Therapy Area")
+                                        @Html.DropDownList("DiseaseTherapyAreaId", null, htmlAttributes: new {@class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.DiseaseTherapyAreaId, "", new {@class = "text-danger"})
                                     </div>
 
                                     <div class="form-group">
-                                            <input type="submit" value="Create a New Trial" class="btn btn-default btn-block" />
+                                        <input type="submit" value="Create a New Trial" class="btn btn-default btn-block" />
                                     </div>
                                 </div>
                             }
@@ -138,7 +147,7 @@
                     <div class="box-footer">
                         <!--Use this to keep the data last typed in a cookie so that it can be saved properly later-->
                         <p>Save what you have typed in a cookie if you are distracted!</p>
-                        <a class="btn btn-app"><i class="fa fa-save"></i>Keep</a> <a class="btn btn-app"><i class="fa fa-exclamation"></i>Clear</a> <a class="btn btn-app"><i class="fa fa-close"></i>Delete</a>
+                        <a class="btn btn-app" id="cookieSave" data-toggle="modal" data-target="#modal-saved"><i class="fa fa-save"></i>Keep</a><a class="btn btn-app" id="cookieDelete" data-toggle="modal" data-target="#modal-deleted"><i class="fa fa-trash"></i>Delete</a>
                     </div>
                     <!-- box-footer -->
                 </div>
@@ -147,9 +156,122 @@
         </div>
     </section>
 </div>
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+<div class="modal fade in" id="modal-saved" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Cookie Saved
+            </div>
+            <div class="modal-body">
+                Your data has been saved to a cookie and will be available the next time you access this page.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
+</div>   
+    <div class="modal fade in" id="modal-deleted" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Cookie Deleted
+                </div>
+                <div class="modal-body">
+                    Your data has been deleted and will no longer be presented to you on this page.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>   
 </body>
 </html>
+
+@section scripts
+{
+    <script>
+        $("#cookieSave").click(function () {
+            Cookies.set('shortName', $('#ShortName').val(), { expires: 10 });
+            Cookies.set('trialTitle', $('#TrialTitle').val(), { expires: 10 });
+            Cookies.set('applicationReference', $('#ApplicationReference').val(), { expires: 10 });
+            Cookies.set('bhNumber', $('#BhNumber').val(), { expires: 10 });
+            Cookies.set('trialTypeId', $('#TrialTypeId').val(), { expires: 10 });
+            Cookies.set('phaseId', $('#PhaseId').val(), { expires: 10 });
+            Cookies.set('sampleSize', $('#SampleSize').val(), { expires: 10 });
+            Cookies.set('grantTypeId', $('#GrantTypeId').val(), { expires: 10 });
+            Cookies.set('fundingStream', $('#FundingStream').val(), { expires: 10 });
+            Cookies.set('grantDeadlineDate', $('#GrantDeadlineDate').val(), { expires: 10 });
+            Cookies.set('diseaseTherapyAreaId', $('#DiseaseTherapyAreaId').val(), { expires: 10 });
+
+        });
+
+        $("#cookieDelete").click(function() {
+            Cookies.remove('shortName');
+            $('#ShortName').val("");
+            Cookies.remove('trialTitle');
+            $('#TrialTitle').val("");
+            Cookies.remove('applicationReference');
+            $('#ApplicationReference').val("");
+            Cookies.remove('bhNumber');
+            $('#BhNumber').val("");
+            Cookies.remove('trialTypeId');
+            $('#TrialTypeId').val("");
+            Cookies.remove('phaseId');
+            $('#PhaseId').val("");
+            Cookies.remove('sampleSize');
+            $('#SampleSize').val("");
+            Cookies.remove('grantTypeId');
+            $('#GrantTypeId').val("");
+            Cookies.remove('fundingStream');
+            $('#FundingStream').val("");
+            Cookies.remove('grantDeadlineDate');
+            $('#GrantDeadlineDate').val("");
+            Cookies.remove('diseaseTherapyAreaId');
+            $('#DiseaseTherapyAreaId').val("");
+            $('#alertMessage').hide();
+        });
+
+        function loadFn(jQuery) {
+            if (typeof Cookies.get('shortName') !== 'undefined') {
+                $('#ShortName').val(Cookies.get('shortName'));
+                $('#alertMessage').show();
+            } else {
+                $('#alertMessage').hide();
+            }
+            if (typeof Cookies.get('trialTitle') !== 'undefined') {
+                $('#TrialTitle').val(Cookies.get('trialTitle'));
+            }
+            if (typeof Cookies.get('applicationReference') !== 'undefined') {
+                $('#ApplicationReference').val(Cookies.get('applicationReference'));
+            }
+            if (typeof Cookies.get('bhNumber') !== 'undefined') {
+                $('#BhNumber').val(Cookies.get('bhNumber'));
+            }
+            if (typeof Cookies.get('trialTypeId') !== 'undefined') {
+                $('#TrialTypeId').val(Cookies.get('trialTypeId'));
+            }
+            if (typeof Cookies.get('phaseId') !== 'undefined') {
+                $('#PhaseId').val(Cookies.get('phaseId'));
+            }
+            if (typeof Cookies.get('sampleSize') !== 'undefined') {
+                $('#SampleSize').val(Cookies.get('sampleSize'));
+            }
+            if (Cookies.get('grantTypeId') !== 'undefined') {
+                $('#GrantTypeId').val(Cookies.get('grantTypeId'));
+            }
+            if (typeof Cookies.get('fundingStream') !== 'undefined') {
+                $('#FundingStream').val(Cookies.get('fundingStream'));
+            }
+            if (typeof Cookies.get('grantDeadlineDate') !== 'undefined') {
+                $('#GrantDeadlineDate').val(Cookies.get('grantDeadlineDate'));
+            }
+            if (typeof Cookies.get('diseaseTherapyAreaId') !== 'undefined') {
+                $('#DiseaseTherapyAreaId').val(Cookies.get('diseaseTherapyAreaId'));
+            }
+        }
+        $(document).ready(loadFn);
+        
+    </script>
+}
